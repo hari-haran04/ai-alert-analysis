@@ -1,0 +1,28 @@
+[project]
+name = "ai-alert-analysis"
+version = "1.0.0"
+description = "AI-assisted sanctions alert analysis prototype"
+requires-python = ">=3.12"
+
+[tool.black]
+line-length = 100
+target-version = ["py312"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+warn_unused_configs = true
+disable_error_code = ["import-untyped"]
+

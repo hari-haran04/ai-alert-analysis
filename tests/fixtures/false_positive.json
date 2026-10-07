@@ -1,0 +1,26 @@
+{
+  "alertId": "ALT-1002",
+  "screeningType": "SANCTIONS",
+  "thirdParty": {
+    "entityId": "TP002",
+    "name": "Michael Jordan",
+    "country": "USA",
+    "city": "Chicago",
+    "dateOfBirth": "1985-06-20",
+    "passportNumber": "P12345678"
+  },
+  "hits": [
+    {
+      "hitId": "HIT010",
+      "name": "Michael B Jordan",
+      "country": "USA",
+      "city": "New York",
+      "dateOfBirth": "1960-01-01",
+      "passportNumber": "P99999999",
+      "score": 85,
+      "level": "LOW",
+      "listType": "WATCHLIST",
+      "source": "FIRCO"
+    }
+  ]
+}

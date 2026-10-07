@@ -1,0 +1,36 @@
+{
+  "alertId": "ALT-1001",
+  "screeningType": "SANCTIONS",
+  "thirdParty": {
+    "entityId": "TP001",
+    "name": "Gold Mayning 000",
+    "country": "Russia",
+    "city": "Yakutsk",
+    "registrationNumber": "1201400007291",
+    "taxId": "1435353596"
+  },
+  "hits": [
+    {
+      "hitId": "HIT001",
+      "name": "Gold Mayning 000",
+      "country": "Russia",
+      "city": "Yakutsk",
+      "registrationNumber": "1201400007291",
+      "taxId": "1435353596",
+      "score": 100,
+      "level": "HIGH",
+      "listType": "US_50PLUS",
+      "source": "KHARON"
+    },
+    {
+      "hitId": "HIT002",
+      "name": "Sakha Gold Mayning AO",
+      "country": "Russia",
+      "city": "Aldan",
+      "score": 94,
+      "level": "MEDIUM",
+      "listType": "US_50PLUS",
+      "source": "KHARON"
+    }
+  ]
+}

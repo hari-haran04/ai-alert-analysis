@@ -1,0 +1,55 @@
+version: 1.0.0
+weights:
+  name: 0.20
+  country: 0.10
+  city: 0.05
+  dateOfBirth: 0.20
+  passportNumber: 0.20
+  registrationNumber: 0.15
+  taxId: 0.10
+  address: 0.05
+  alias: 0.05
+thresholds:
+  trueAlert: 0.85
+  falsePositive: 0.30
+  inconclusiveLow: 0.45
+  inconclusiveHigh: 0.75
+priorities:
+  taxId: CRITICAL
+  registrationNumber: CRITICAL
+  passportNumber: HIGH
+  dateOfBirth: HIGH
+  name: MEDIUM
+  country: MEDIUM
+  city: LOW
+  address: LOW
+  alias: LOW
+rules:
+  - id: critical-tax-id-mismatch
+    priority: CRITICAL
+    attribute: taxId
+    when: MISMATCH
+    effect: strong_negative_override
+  - id: critical-registration-mismatch
+    priority: CRITICAL
+    attribute: registrationNumber
+    when: MISMATCH
+    effect: strong_negative_override
+  - id: high-passport-mismatch
+    priority: HIGH
+    attribute: passportNumber
+    when: MISMATCH
+    effect: negative_signal
+  - id: high-dob-mismatch
+    priority: HIGH
+    attribute: dateOfBirth
+    when: MISMATCH
+    effect: negative_signal
+risk:
+  criticalListTypes:
+    - OFAC_SDN
+    - UN_SANCTIONS
+  highListTypes:
+    - US_50PLUS
+    - EU_SANCTIONS
+    - UK_SANCTIONS
