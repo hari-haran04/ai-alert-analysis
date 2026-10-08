@@ -40,12 +40,6 @@ class AlertAnalyzer:
     async def analyze(self, alert: AlertIn) -> AnalysisResponse:
         alert_payload = alert.model_dump(by_alias=True, mode="json")
         input_hash = stable_input_hash(alert_payload)
-        historical_cases = self.case_retrieval.similar_cases(
-            self.case_retrieval.alert_text(alert_payload),
-            top_k=5,
-        )
-        historical_similarity = historical_cases[0]["similarity"] if historical_cases else 0.0
-
         hit_evidence: list[dict] = []
         for hit in alert.hits:
             attributes = self.attribute_matcher.compare_all(alert.third_party, hit)
@@ -71,12 +65,18 @@ class AlertAnalyzer:
                     "classification": classification,
                     "criticalMismatches": rule_result["criticalMismatches"],
                     "highMismatches": rule_result["highMismatches"],
-                    "historicalSimilarity": historical_similarity,
+                    "historicalSimilarity": 0.0,
                 }
             )
 
         ranked = self.hit_ranker.rank(hit_evidence)
         best = ranked[0]
+        historical_cases = self.case_retrieval.similar_cases(
+            self.case_retrieval.analysis_text(alert_payload, best["attributes"]),
+            top_k=5,
+        )
+        historical_similarity = historical_cases[0]["similarity"] if historical_cases else 0.0
+        best["historicalSimilarity"] = historical_similarity
         risk_level = self.risk_engine.calculate(best, self.rule_engine.config)
         classification = best["classification"]
         data_quality = self._data_quality(best["attributes"])
