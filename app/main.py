@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from fastapi import FastAPI
 from fastapi.exceptions import RequestValidationError
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from fastapi.responses import JSONResponse
 
 from app.api.v1 import alerts, cases, feedback, health, models, rules
@@ -27,6 +29,12 @@ app = FastAPI(
 
 app.middleware("http")(request_context_middleware)
 app.add_exception_handler(AppError, app_error_handler)
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
+
+
+@app.get("/", include_in_schema=False)
+async def ui() -> FileResponse:
+    return FileResponse("app/static/index.html")
 
 
 @app.exception_handler(RequestValidationError)

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI-Assisted Alert Analysis</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <h1>AI-Assisted Alert Analysis</h1>
+          <p>Sanctions alert investigation support for human compliance analysts.</p>
+        </div>
+        <div class="status" id="apiStatus">Checking API</div>
+      </header>
+
+      <section class="workspace">
+        <aside class="panel input-panel">
+          <div class="panel-head">
+            <div>
+              <h2>Alert Payload</h2>
+              <p>Edit JSON or load a sample.</p>
+            </div>
+            <div class="button-row">
+              <button id="loadTrue" type="button">True Alert</button>
+              <button id="loadFalse" type="button">False Positive</button>
+              <button id="loadMissing" type="button">Missing Data</button>
+            </div>
+          </div>
+          <textarea id="payload" spellcheck="false"></textarea>
+          <div class="actions">
+            <button class="primary" id="analyze" type="button">Analyze Alert</button>
+            <button id="formatJson" type="button">Format JSON</button>
+          </div>
+          <p class="notice">
+            This tool provides an AI-assisted recommendation. Final compliance decisions require analyst review.
+          </p>
+        </aside>
+
+        <section class="panel result-panel">
+          <div class="panel-head">
+            <div>
+              <h2>Analysis Result</h2>
+              <p id="resultSubhead">Run an analysis to see evidence.</p>
+            </div>
+          </div>
+
+          <div id="emptyState" class="empty">
+            Paste or load an alert payload, then click Analyze Alert.
+          </div>
+
+          <div id="results" class="results hidden">
+            <div class="summary-grid">
+              <div class="metric">
+                <span>Classification</span>
+                <strong id="classification">-</strong>
+              </div>
+              <div class="metric">
+                <span>Confidence</span>
+                <strong id="confidence">-</strong>
+              </div>
+              <div class="metric">
+                <span>Risk</span>
+                <strong id="riskLevel">-</strong>
+              </div>
+              <div class="metric">
+                <span>Best Hit</span>
+                <strong id="bestHit">-</strong>
+              </div>
+            </div>
+
+            <section class="result-block">
+              <h3>Summary</h3>
+              <p id="summary"></p>
+            </section>
+
+            <section class="result-block">
+              <h3>Ranked Hits</h3>
+              <div id="rankedHits" class="table"></div>
+            </section>
+
+            <section class="result-block">
+              <h3>Attribute Evidence</h3>
+              <div id="attributes" class="attribute-list"></div>
+            </section>
+
+            <section class="result-block">
+              <h3>Historical Cases</h3>
+              <div id="historicalCases" class="case-list"></div>
+            </section>
+
+            <section class="result-block">
+              <h3>Recommended Actions</h3>
+              <ul id="actionsList"></ul>
+            </section>
+          </div>
+        </section>
+      </section>
+    </main>
+    <script src="/static/app.js"></script>
+  </body>
+</html>

@@ -71,9 +71,9 @@ class AlertAnalyzer:
 
         ranked = self.hit_ranker.rank(hit_evidence)
         best = ranked[0]
-        historical_cases = self.case_retrieval.similar_cases(
-            self.case_retrieval.analysis_text(alert_payload, best["attributes"]),
-            top_k=5,
+        historical_cases = self.case_retrieval.similar_cases_for_third_party(
+            alert_payload["thirdParty"],
+            top_k=3,
         )
         historical_similarity = historical_cases[0]["similarity"] if historical_cases else 0.0
         best["historicalSimilarity"] = historical_similarity
