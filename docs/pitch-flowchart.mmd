@@ -1,0 +1,32 @@
+flowchart LR
+    A["1. Screening Alert<br/>Third party + possible hits"]
+    B["2. API Validation<br/>FastAPI + Pydantic"]
+    C["3. Attribute Matching<br/>Compare name, country, DOB, passport, tax ID, registration"]
+    D["4. Rule Engine<br/>Apply configurable compliance rules"]
+    E["5. XGBoost Model<br/>Predict true-match probability"]
+    F["6. Hit Ranking<br/>Rank hits by strongest evidence"]
+    G["7. Historical Case Search<br/>Find top 3 similar past cases"]
+    H["8. Risk + Confidence<br/>Calculate risk level and confidence"]
+    I["9. Grounded Explanation<br/>Summarize only computed evidence"]
+    J["10. Analyst Output<br/>Recommendation + evidence + audit trail"]
+
+    A --> B
+    B --> C
+    C --> D
+    C --> E
+    D --> F
+    E --> F
+    F --> G
+    G --> H
+    H --> I
+    I --> J
+
+    classDef input fill:#e8f1ff,stroke:#2b65a8,stroke-width:1px,color:#10233f
+    classDef process fill:#eef8f4,stroke:#16836f,stroke-width:1px,color:#10233f
+    classDef ai fill:#fff3d6,stroke:#b7791f,stroke-width:1px,color:#10233f
+    classDef output fill:#f3e8ff,stroke:#7c3aed,stroke-width:1px,color:#10233f
+
+    class A,B input
+    class C,D,F,G,H process
+    class E,I ai
+    class J output

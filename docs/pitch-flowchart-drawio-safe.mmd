@@ -1,0 +1,22 @@
+flowchart LR
+    A["1. Screening Alert<br/>Third party + possible hits"]
+    B["2. API Validation<br/>FastAPI + Pydantic"]
+    C["3. Attribute Matching<br/>Compare identity fields"]
+    D["4. Rule Engine<br/>Apply compliance rules"]
+    E["5. XGBoost Model<br/>Predict match probability"]
+    F["6. Hit Ranking<br/>Select strongest hit"]
+    G["7. Historical Cases<br/>Retrieve top 3 similar cases"]
+    H["8. Risk and Confidence<br/>Calculate final scores"]
+    I["9. Explanation<br/>Generate grounded reasoning"]
+    J["10. Analyst Output<br/>Recommendation + evidence + audit trail"]
+
+    A --> B
+    B --> C
+    C --> D
+    C --> E
+    D --> F
+    E --> F
+    F --> G
+    G --> H
+    H --> I
+    I --> J
